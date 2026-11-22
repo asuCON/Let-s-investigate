@@ -820,15 +820,15 @@ html, body {
 .cards {
   margin-top: 26px;
   display: grid;
-  gap: 18px;
-  perspective: 1000px;
+  gap: 20px;
+  perspective: 1200px;
   flex: 1;
   align-content: start;
 }
 
 .card {
   position: relative;
-  height: 185px;
+  min-height: 200px;
   border: 0;
   background: none;
   padding: 0;
@@ -837,11 +837,14 @@ html, body {
   color: inherit;
   text-align: left;
   transform-style: preserve-3d;
-  transition: transform .7s cubic-bezier(.3, 1.3, .4, 1);
+  transition: transform .75s cubic-bezier(.3, 1.3, .4, 1), box-shadow .4s ease;
+  z-index: 1;
 }
 
+/* Zoom effect and 3D flip when clicked */
 .card.flipped {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) scale(1.06);
+  z-index: 10;
 }
 
 .face {
@@ -853,8 +856,9 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 22px 24px;
-  overflow: hidden;
+  padding: 24px 26px;
+  overflow: visible;
+  box-sizing: border-box;
 }
 
 .back {
@@ -869,6 +873,7 @@ html, body {
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: 22px;
   background: repeating-linear-gradient(45deg, rgba(255, 255, 255, .09) 0 10px, transparent 10px 20px);
 }
 
@@ -895,8 +900,9 @@ html, body {
   background: var(--front-t);
   color: var(--front-ink);
   transform: rotateY(180deg);
-  box-shadow: 0 12px 26px -12px rgba(42, 24, 54, .4);
-  border: 1.5px solid rgba(124, 58, 237, .25);
+  box-shadow: 0 16px 36px -10px rgba(42, 24, 54, .6), 0 0 0 1px rgba(124, 58, 237, .3);
+  border: 1.5px solid rgba(124, 58, 237, .35);
+  height: 100%;
 }
 
 .cat {
@@ -905,14 +911,15 @@ html, body {
   text-transform: uppercase;
   font-weight: 700;
   color: var(--accent);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .fact {
-  font-size: 17px;
-  line-height: 1.4;
+  font-size: 18px;
+  line-height: 1.5;
   font-weight: 600;
   word-break: normal;
+  color: #ffffff;
 }
 
 .locked .back {
