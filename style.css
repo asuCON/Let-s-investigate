@@ -830,7 +830,8 @@ html, body {
 
 .card {
   position: relative;
-  min-height: 195px;
+  height: var(--h, 180px);
+  min-height: 180px;
   border: 0;
   background: none;
   padding: 0;
@@ -845,7 +846,7 @@ html, body {
 
 /* Clear zoom-out flip expansion when clicked */
 .card.flipped {
-  transform: rotateY(180deg) scale(1.14);
+  transform: rotateY(180deg) scale(1.05);
   z-index: 50;
   filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.75));
 }
@@ -860,7 +861,7 @@ html, body {
   flex-direction: column;
   justify-content: center;
   padding: 24px 26px;
-  overflow: visible;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -906,23 +907,33 @@ html, body {
   box-shadow: 0 16px 36px -10px rgba(42, 24, 54, .6), 0 0 0 1px rgba(124, 58, 237, .3);
   border: 1.5px solid rgba(124, 58, 237, .35);
   height: 100%;
+  overflow-y: auto;
+  justify-content: flex-start;
+  padding: 24px 22px;
 }
 
 .cat {
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: 700;
   color: var(--accent);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .fact {
-  font-size: 18px;
-  line-height: 1.5;
-  font-weight: 600;
-  word-break: normal;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 700;
   color: #ffffff;
+}
+
+.txt {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-top: 10px;
+  color: var(--sub-t);
+  font-weight: 400;
 }
 
 .locked .back {

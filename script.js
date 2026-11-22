@@ -314,9 +314,10 @@ const readerClose = document.getElementById('reader-close');
 function openCardModal(cardEl) {
   const catEl = cardEl.querySelector('.cat');
   const factEl = cardEl.querySelector('.fact');
+  const txtEl = cardEl.querySelector('.txt');
   if (catEl && factEl && cardModal) {
     readerCat.textContent = catEl.textContent;
-    readerFact.textContent = factEl.textContent;
+    readerFact.innerHTML = `<strong>${factEl.textContent}</strong>` + (txtEl ? `<p style="margin-top:12px;font-size:16px;line-height:1.55;color:rgba(255,255,255,0.85);font-weight:400;">${txtEl.textContent}</p>` : '');
     cardModal.classList.add('open');
   }
 }
