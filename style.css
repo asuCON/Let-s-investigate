@@ -199,7 +199,7 @@ html, body {
 #screen-proceed {
     position: relative;
     overflow: hidden;
-    background-image: url("assets/hero-bg.jpg");
+    background-image: url("assets/ocean-bg.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -208,7 +208,7 @@ html, body {
 .fade-overlay {
     position: absolute;
     inset: 0;
-    background: #000;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.45) 100%);
     opacity: 0;
     pointer-events: none;
     z-index: 1;
@@ -264,6 +264,7 @@ html, body {
   font-size: 17px;
   font-weight: 500;
   color: var(--sub);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .time {
@@ -272,6 +273,7 @@ html, body {
   letter-spacing: -2px;
   line-height: 1.05;
   margin-top: 4px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 .stack {
