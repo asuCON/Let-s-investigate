@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Hello Stranger</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aldrich&family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- ============ MOBILE ONLY BLOCK OVERLAY ============ -->
+    <div id="mobile-blocker" class="mobile-blocker">
+      <div class="blocker-content">
+        <div class="blocker-badge">
+          <svg class="blocker-svg" viewBox="0 0 100 100">
+            <!-- No phone circle badge -->
+            <circle cx="50" cy="50" r="44" stroke="#ff4b68" stroke-width="8" fill="none" />
+            <!-- Phone outline -->
+            <rect x="36" y="24" width="28" height="52" rx="4" stroke="#fff" stroke-width="4.5" fill="none" />
+            <circle cx="50" cy="69" r="2.5" fill="#fff" />
+            <!-- Diagonal strike-through -->
+            <line x1="22" y1="22" x2="78" y2="78" stroke="#ff4b68" stroke-width="8" stroke-linecap="round" />
+          </svg>
+        </div>
+        <h1 class="blocker-title">Mobile Experience Only</h1>
+        <p class="blocker-desc">
+          This interactive experience is crafted exclusively for mobile screens.<br />
+          Please scan or open this link directly from your smartphone.
+        </p>
+      </div>
+    </div>
+
+    <!-- ============ SCREEN 1: HOME (envelope on hero image) ============ -->
+    <div id="screen-home" class="screen">
+      <div id="envelope-container">
+        <img src="assets/envelope.png" alt="Envelope" id="envelope" />
+        <p>♡ CLICK TO OPEN ♡</p>
+      </div>
+    </div>
+
+    <!-- ============ SCREEN 2: LETTER ============ -->
+    <div id="screen-letter" class="screen">
+      <div class="letter-window">
+        <h1 id="letter-title">HEY! WELCOME STRANGER 👾</h1>
+
+        <p class="letter-body">
+          <br />
+          Wanna get started?<br> Let's get into...<br>NGL<br>The experience will be pretty But not more than U😜.
+        </p>
+
+        <button id="open-garden-btn" class="garden-btn">CLICK TO PROCEED. 🌸</button>
+      </div>
+    </div>
+
+    <!-- ============ SCREEN 3: NOTIFICATIONS SECTION ============ -->
+    <div id="screen-proceed" class="screen">
+      <div class="fade-overlay"></div>
+      <div class="proceed-content">
+        <main class="phone">
+          <div class="clock">
+            <div class="date" id="date"></div>
+            <div class="time" id="time"></div>
+          </div>
+          <div class="stack" id="stack"></div>
+          <p class="fishy-text" id="fishy-text">something's fishy... 🧐</p>
+          <button class="btn" id="replay">let's investigate</button>
+        </main>
+      </div>
+    </div>
+
+    <!-- ============ SCREEN 4: INTERMEDIATE TEASER / TYPING SCREEN ============ -->
+    <div id="screen-teaser" class="screen">
+      <div class="teaser-container">
+        <h2 id="teaser-text" class="teaser-text"></h2>
+      </div>
+    </div>
+
+    <!-- ============ SCREEN 5: EXHIBIT A ============ -->
+    <div id="screen-exhibit" class="screen">
+      <main class="file">
+        <div class="top"><span>Case file #0001</span><span>Confidential</span></div>
+        <h1>Exhibit <span>A</span></h1>
+        <p class="sub">Today’s first conversation.</p>
+        <div class="status">
+          <div class="line"><em>Status</em><span class="stamp slam" id="st">Awkward</span></div>
+          <div class="line update" id="up"><em>Update</em><span class="stamp" id="up2">Slightly less awkward</span></div>
+          <div class="line"><em>Cringe</em><div class="meter"><i id="meter"></i></div></div>
+        </div>
+        <section class="photo"><span class="tag">Evidence photo</span><div class="chat" id="chat"></div></section>
+        <button class="exhibit-btn" id="exhibit-reopen">Let's move forward</button>
+      </main>
+    </div>
+
+    <!-- ============ SCREEN 6: THINGS ABOUT ME YOU DON'T KNOW YET ============ -->
+    <div id="screen-things" class="screen">
+      <main class="things-main">
+        <p class="eyebrow">Classified (but friendly)</p>
+        <h1 class="things-h1">Things about me <span>you don’t know yet.</span></h1>
+        <p class="hint">Tap a card to flip it.</p>
+
+        <div class="cards" id="cards">
+          <button class="card" data-i="0" aria-label="Card 1, tap to flip">
+            <div class="face back"><div class="q">?</div><div class="num">Card 01</div></div>
+            <div class="face front"><div class="cat">A mind that never really switches off</div><div class="fact">I tend to think a little too much, notice the smallest details, and find meaning in things most people overlook. I love building things, learning how things work, and turning random ideas in my head into something real. Sometimes my mind is louder than I let on.</div></div>
+          </button>
+          <button class="card" data-i="1" aria-label="Card 2, tap to flip">
+            <div class="face back"><div class="q">?</div><div class="num">Card 02</div></div>
+            <div class="face front"><div class="cat">I may not always say it, but I mean it.</div><div class="fact">I'm not someone who takes connections lightly. I remember little things, conversations, moments, and the feelings attached to them. I might not always know how to express everything, but when something or someone matters to me, it genuinely does.</div></div>
+          </button>
+          <button class="card locked-card locked" data-i="2" aria-label="Card 3, locked">
+            <div class="face back"><div class="q">🔒</div><div class="num">Card 03 · unlocks after the next conversation</div></div>
+            <div class="face front"><div class="cat">Locked</div><div class="fact"></div></div>
+          </button>
+        </div>
+
+        <p class="toast" id="toast"></p>
+        <button class="btn-start" id="btn-start">let's start ✨</button>
+        <p class="foot">3 cards · 1 locked · no spoilers</p>
+      </main>
+    </div>
+
+    <!-- ============ SCREEN 7: YOUR TURN ============ -->
+    <div id="screen-yourturn" class="screen">
+      <main class="yourturn-main">
+        <p class="eyebrow">Plot twist</p>
+        <h1 class="yourturn-h1">Your <span>turn.</span></h1>
+        <p class="yourturn-q">What’s <b>one thing I should know about you?</b></p>
+        <p class="sub">Big, small, random, whatever. No wrong answers.</p>
+
+        <div class="chips" id="chips">
+          <button class="chip" data-t="My comfort food is ">🍜 comfort food</button>
+          <button class="chip" data-t="A random fact about me: ">🎲 random fact</button>
+          <button class="chip" data-t="Something I’m really into lately: ">✨ into lately</button>
+          <button class="chip" data-t="A weird habit of mine: ">🙃 weird habit</button>
+        </div>
+
+        <textarea id="ans" placeholder="Type your answer here…" aria-label="Your answer"></textarea>
+
+        <a class="go" id="go" href="https://ig.me/m/asucon04" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+          Send it in the DM
+        </a>
+        <p class="note" id="note">Your answer gets copied, then the DM opens. Just paste and send.</p>
+
+        <div class="spacer"></div>
+        <p class="foot">Conversation starter, not a performance 🙂</p>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
