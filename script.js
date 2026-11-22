@@ -305,6 +305,33 @@ function sparkle(el) {
   }
 }
 
+// Zoom Card Modal Reader Elements
+const cardModal = document.getElementById('card-modal');
+const readerCat = document.getElementById('reader-cat');
+const readerFact = document.getElementById('reader-fact');
+const readerClose = document.getElementById('reader-close');
+
+function openCardModal(cardEl) {
+  const catEl = cardEl.querySelector('.cat');
+  const factEl = cardEl.querySelector('.fact');
+  if (catEl && factEl && cardModal) {
+    readerCat.textContent = catEl.textContent;
+    readerFact.textContent = factEl.textContent;
+    cardModal.classList.add('open');
+  }
+}
+
+if (readerClose) {
+  readerClose.addEventListener('click', () => {
+    cardModal.classList.remove('open');
+  });
+}
+if (cardModal) {
+  cardModal.addEventListener('click', (e) => {
+    if (e.target === cardModal) cardModal.classList.remove('open');
+  });
+}
+
 cards.forEach((c) => {
   c.addEventListener('click', () => {
     const i = +c.dataset.i;
@@ -323,15 +350,23 @@ cards.forEach((c) => {
       return;
     }
 
-    if (c.classList.contains('flipped')) return;
+    const wasFlipped = c.classList.contains('flipped');
     c.classList.add('flipped');
-    sparkle(c);
-    flipped++;
-    if (flipped === 1) say('One down. Small, but true.');
-    if (flipped === 2) {
-      say('Two down. <b>One left… 👀</b>');
-      cards[2].classList.add('tease');
+    
+    if (!wasFlipped) {
+      sparkle(c);
+      flipped++;
+      if (flipped === 1) say('One down. Small, but true.');
+      if (flipped === 2) {
+        say('Two down. <b>One left… 👀</b>');
+        cards[2].classList.add('tease');
+      }
     }
+
+    // Open zoom modal reader so the user can read the full content comfortably
+    setTimeout(() => {
+      openCardModal(c);
+    }, 450);
   });
 });
 
