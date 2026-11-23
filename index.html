@@ -161,11 +161,27 @@
 
         <textarea id="ans" placeholder="Type your answer here…" aria-label="Your answer"></textarea>
 
-        <a class="go" id="go" href="https://ig.me/m/asucon04" target="_blank" rel="noopener">
+        <button class="go" id="go" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
           Send it in the DM
-        </a>
+        </button>
         <p class="note" id="note">Your answer gets copied, then the DM opens. Just paste and send.</p>
+
+        <!-- Direct Instagram App & Web Fallbacks -->
+        <div class="dm-fallback" id="dm-fallback">
+          <p class="fallback-hint">If DM didn't open or asks to log in:</p>
+          <div class="fallback-chips">
+            <a class="fallback-chip" id="open-ig-app" href="instagram://user?username=asucon04">
+              <span>📱 Open in Instagram App</span>
+            </a>
+            <a class="fallback-chip" id="open-ig-web" href="https://www.instagram.com/asucon04/" target="_blank" rel="noopener">
+              <span>🌐 Web Profile</span>
+            </a>
+            <button class="fallback-chip copy-chip" id="copy-again-btn" type="button">
+              <span>📋 Copy text again</span>
+            </button>
+          </div>
+        </div>
 
         <div class="spacer"></div>
         <p class="foot">Conversation starter, not a performance 🙂</p>

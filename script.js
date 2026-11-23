@@ -381,6 +381,43 @@ const ans = document.getElementById('ans');
 const note = document.getElementById('note');
 const chipsContainer = document.getElementById('chips');
 const goBtn = document.getElementById('go');
+const copyAgainBtn = document.getElementById('copy-again-btn');
+const openIgAppBtn = document.getElementById('open-ig-app');
+const openIgWebBtn = document.getElementById('open-ig-web');
+
+const IG_USERNAME = 'asucon04';
+const IG_APP_URL = `instagram://user?username=${IG_USERNAME}`;
+const IG_DM_URL = `https://ig.me/m/${IG_USERNAME}`;
+const IG_WEB_URL = `https://www.instagram.com/${IG_USERNAME}/`;
+
+async function copyAnswerText() {
+  const body = ans ? ans.value.trim() : '';
+  const msg = body ? 'Okay, my turn. ' + body : 'Okay, my turn. One thing you should know about me: ';
+  let ok = false;
+
+  // 1. Try modern async clipboard API
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(msg);
+      ok = true;
+    } catch (_) {}
+  }
+
+  // 2. Fallback to execCommand
+  if (!ok && ans) {
+    try {
+      const prev = ans.value;
+      ans.value = msg;
+      ans.focus();
+      ans.select();
+      ans.setSelectionRange(0, msg.length);
+      ok = document.execCommand('copy');
+      ans.value = prev || msg;
+    } catch (_) {}
+  }
+
+  return { ok, msg };
+}
 
 if (chipsContainer) {
   chipsContainer.addEventListener('click', (e) => {
@@ -393,21 +430,52 @@ if (chipsContainer) {
 }
 
 if (goBtn) {
-  goBtn.addEventListener('click', async () => {
-    const body = ans.value.trim();
-    const msg = body ? 'Okay, my turn. ' + body : 'Okay, my turn. One thing you should know about me: ';
-    let ok = false;
-    try {
-      await navigator.clipboard.writeText(msg);
-      ok = true;
-    } catch (e) {
-      try {
-        ans.value = msg;
-        ans.select();
-        ok = document.execCommand('copy');
-      } catch (_) {}
+  goBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const { ok } = await copyAnswerText();
+
+    if (ok) {
+      note.innerHTML = '<b>Copied!</b> Opening Instagram... Just paste and send 💬';
+    } else {
+      note.innerHTML = 'Couldn’t auto-copy. Select your text to copy, then paste in Instagram.';
     }
-    note.innerHTML = ok ? '<b>Copied!</b> Paste it in the DM 💬' : 'Couldn’t copy. Long-press your text to copy it, then paste in the DM.';
+
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera || '';
+    const isMobile = /android|iphone|ipad|ipod/i.test(userAgent);
+
+    if (isMobile) {
+      // First try to open the Instagram app directly (avoids web login wall)
+      window.location.href = IG_APP_URL;
+
+      // Also set a backup redirect to ig.me in case the custom scheme doesn't engage
+      setTimeout(() => {
+        // If still in the same view after 1.5 seconds, user can use the chips below
+      }, 1500);
+    } else {
+      // Desktop: Open DM in a new tab
+      window.open(IG_DM_URL, '_blank', 'noopener,noreferrer');
+    }
+  });
+}
+
+if (openIgAppBtn) {
+  openIgAppBtn.addEventListener('click', async () => {
+    const { ok } = await copyAnswerText();
+    if (ok) note.innerHTML = '<b>Copied!</b> Opening Instagram app... 💬';
+  });
+}
+
+if (openIgWebBtn) {
+  openIgWebBtn.addEventListener('click', async () => {
+    const { ok } = await copyAnswerText();
+    if (ok) note.innerHTML = '<b>Copied!</b> Opening profile in browser... 💬';
+  });
+}
+
+if (copyAgainBtn) {
+  copyAgainBtn.addEventListener('click', async () => {
+    const { ok } = await copyAnswerText();
+    note.innerHTML = ok ? '<b>Copied again!</b> Ready to paste in Instagram 💬' : 'Please highlight and copy your text manually.';
   });
 }
 
